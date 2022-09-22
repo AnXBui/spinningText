@@ -1,17 +1,21 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TextCircle from "./components/TextCircle";
 import styled from "@emotion/styled";
 
 function App() {
   const [input, setInput] = useState("");
+  const inputField = useRef();
+
   const inputChange = (e) => {
     if (e.target.value !== input) {
       setInput(e.target.value);
     }
   };
 
-  useEffect(() => {});
+  useEffect(() => {
+    inputField.current.focus();
+  }, []);
 
   return (
     <Screen>
@@ -22,7 +26,7 @@ function App() {
         rel="stylesheet"
       />
       <TextCircle text={input} />
-      <Input onChange={inputChange} type="text" />
+      <Input ref={inputField} onChange={inputChange} type="text" />
 
       <p />
     </Screen>
